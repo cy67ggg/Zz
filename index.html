@@ -6,9 +6,7 @@
     <title>زمزم حیات | دستگاه‌های تصفیه آب پیشرفته</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
-    <style>
-        body { font-family: 'Vazirmatn', sans-serif; }
-    </style>
+    <style> body { font-family: 'Vazirmatn', sans-serif; } </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
@@ -22,7 +20,6 @@
             <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
                 <a href="#products" class="hover:text-blue-600 transition">محصولات</a>
                 <a href="#about" class="hover:text-blue-600 transition">خرید حضوری</a>
-                <a href="#contact" class="hover:text-blue-600 transition">تماس با ما</a>
             </nav>
             <a href="admin.html" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-3 py-2 rounded-lg transition">ورود مدیریت</a>
         </div>
@@ -33,10 +30,10 @@
         <div class="absolute inset-0 bg-blue-500/5 blur-3xl -z-10 rounded-full"></div>
         <span class="text-blue-600 bg-blue-50 text-xs font-semibold px-4 py-1.5 rounded-full">کیفیت بی‌نظیر آب آشامیدنی</span>
         <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 mt-6 leading-tight">سلامتی خانواده با <span class="text-blue-600">زمزم حیات</span></h2>
-        <p class="text-slate-500 max-w-2xl mx-auto mt-4 text-base md:text-lg">بررسی مشخصات و قیمت به‌روز انواع دستگاه‌های تصفیه آب خانگی و صنعتی. خرید صرفاً به‌صورت حضوری در آدرس فروشگاه انجام می‌شود.</p>
+        <p class="text-slate-500 max-w-2xl mx-auto mt-4 text-base md:text-lg">بررسی مشخصات و قیمت به‌روز انواع دستگاه‌های تصفیه آب خانگی و صنعتی. خرید صرفاً به‌صورت حضوری انجام می‌شود.</p>
     </section>
 
-    <!-- کاتالوگ محصولات -->
+    <!-- محصولات -->
     <section id="products" class="max-w-7xl mx-auto px-6 py-12">
         <div class="flex justify-between items-end mb-10">
             <div>
@@ -44,32 +41,28 @@
                 <p class="text-slate-500 text-sm mt-1">جهت خرید به آدرس فروشگاه مراجعه فرمایید</p>
             </div>
         </div>
-
-        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- محصولات توسط جاوااسکریپت اینجا بارگذاری می‌شوند -->
-        </div>
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </section>
 
-    <!-- بخش اطلاعات خرید حضوری -->
+    <!-- اطلاعات تماس و خرید حضوری -->
     <section id="about" class="bg-blue-900 text-white my-20 py-16">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div>
                 <h3 class="text-3xl font-bold mb-4">راهنمای خرید حضوری</h3>
-                <p class="text-blue-200 leading-relaxed mb-6">برای دریافت مشاوره تخصصی رایگان، تست کیفیت آب و مشاهده نزدیک دستگاه‌ها، منتظر حضور گرم شما در نمایندگی مرکزی زمزم حیات هستیم.</p>
-                <div class="space-y-3 text-sm text-blue-100">
-                    <p>📍 <strong>آدرس:</strong> تهران، خیابان نمونه، پلاک ۱۲۳، فروشگاه زمزم حیات</p>
-                    <p>📞 <strong>تلفن تماس:</strong> ۰۲۱-۱۲۳۴۵۶۷۸</p>
-                    <p>⏰ <strong>ساعات کاری:</strong> شنبه تا پنجشنبه از ساعت ۹ صبح الی ۹ شب</p>
+                <p class="text-blue-200 leading-relaxed mb-6">برای دریافت مشاوره تخصصی رایگان و مشاهده دستگاه‌ها، منتظر حضور شما در نمایندگی زمزم حیات هستیم.</p>
+                <div class="space-y-4 text-sm text-blue-100 bg-blue-950/40 p-6 rounded-2xl border border-blue-800">
+                    <p class="flex items-start gap-2">📍 <strong>آدرس:</strong> <span id="display-address">در حال بارگذاری...</span></p>
+                    <p class="flex items-center gap-2">📞 <strong>تلفن تماس:</strong> <span id="display-phone">در حال بارگذاری...</span></p>
+                    <p class="flex items-center gap-2">⏰ <strong>ساعات کاری:</strong> <span id="display-hours">در حال بارگذاری...</span></p>
                 </div>
             </div>
-            <div class="bg-blue-800/50 p-6 rounded-2xl border border-blue-700 text-center">
-                <p class="text-lg font-semibold text-white mb-2">فروش آنلاین نداریم!</p>
-                <p class="text-sm text-blue-200">تمامی فاکتورها و ضمانت‌نامه‌های رسمی تنها در محل فروشگاه صادر می‌گردند.</p>
+            <div class="bg-blue-800/50 p-8 rounded-2xl border border-blue-700 text-center">
+                <p class="text-xl font-bold text-white mb-3">فروش آنلاین نداریم!</p>
+                <p class="text-sm text-blue-200 leading-relaxed">تمامی فاکتورها، تست کیفیت آب و ضمانت‌نامه‌های رسمی تنها به‌صورت حضوری در محل فروشگاه صادر می‌گردند.</p>
             </div>
         </div>
     </section>
 
-    <!-- فوتر -->
     <footer class="border-t border-slate-200 py-8 text-center text-slate-400 text-sm">
         <p>© کلیه حقوق برای برند زمزم حیات محفوظ است.</p>
     </footer>
