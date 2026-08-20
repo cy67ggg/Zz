@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدیریت | زمزم حیات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <style> body { font-family: 'Vazirmatn', sans-serif; } </style>
+</head>
+<body class="bg-slate-100 text-slate-800 p-6">
+
+    <!-- فرم ورود -->
+    <div id="login-box" class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl mt-20">
+        <h2 class="text-2xl font-bold text-center text-slate-900 mb-6">ورود به پنل مدیریت</h2>
+        <input type="password" id="admin-pass" placeholder="رمز عبور را وارد کنید" class="w-full border p-3 rounded-xl mb-4 outline-none focus:ring-2 focus:ring-blue-500">
+        <button onclick="checkPass()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition">ورود</button>
+        <p id="error-msg" class="text-red-500 text-xs text-center mt-3 hidden">رمز عبور اشتباه است!</p>
+    </div>
+
+    <!-- پنل اصلی (در ابتدا مخفی) -->
+    <div id="admin-panel" class="max-w-4xl mx-auto hidden">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-bold text-slate-900">مدیریت محصولات زمزم حیات</h2>
+            <a href="index.html" class="text-sm bg-white border border-slate-200 px-4 py-2 rounded-xl">مشاهده سایت</a>
+        </div>
+
+        <!-- فرم افزودن محصول -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm mb-8">
+            <h3 class="font-bold text-lg mb-4 text-slate-700">افزودن محصول جدید</h3>
+            <form id="add-product-form" class="space-y-4">
+                <input type="text" id="p-title" placeholder="نام دستگاه" required class="w-full border p-3 rounded-xl text-sm outline-none focus:border-blue-500">
+                <input type="text" id="p-price" placeholder="قیمت (مثلا: ۱۵,۵۰۰,۰۰۰ تومان)" required class="w-full border p-3 rounded-xl text-sm outline-none focus:border-blue-500">
+                <textarea id="p-desc" placeholder="توضیحات کوتاه (تعداد فیلتر، کشور سازنده و...)" class="w-full border p-3 rounded-xl text-sm outline-none focus:border-blue-500"></textarea>
+                <div>
+                    <label class="block text-xs text-slate-500 mb-1">انتخاب تصویر از گالری:</label>
+                    <input type="file" id="p-image" accept="image/*" required class="w-full text-sm border p-2 rounded-xl">
+                </div>
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-medium text-sm hover:bg-blue-700 transition">ثبت محصول</button>
+            </form>
+        </div>
+
+        <!-- لیست محصولات جهت حذف -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm">
+            <h3 class="font-bold text-lg mb-4 text-slate-700">محصولات موجود</h3>
+            <div id="admin-product-list" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function checkPass() {
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === '1234') { // رمز عبور مدیریت
+                document.getElementById('login-box').classList.add('hidden');
+                document.getElementById('admin-panel').classList.remove('hidden');
+                renderAdminProducts();
+            } else {
+                document.getElementById('error-msg').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
