@@ -1,4 +1,4 @@
-// محصولات پیش‌فرض اول دوره
+// مقادیر پیش‌فرض
 const defaultProducts = [
     {
         id: 1,
@@ -9,13 +9,35 @@ const defaultProducts = [
     }
 ];
 
-// دریافت محصولات از حافظه
+const defaultInfo = {
+    address: "تهران، خیابان اصلی، پلاک ۱۲۳، فروشگاه زمزم حیات",
+    phone: "۰۲۱-۱۲۳۴۵۶۷۸",
+    hours: "شنبه تا پنجشنبه از ساعت ۹ صبح الی ۹ شب"
+};
+
+// دریافت داده‌ها از حافظه
 function getProducts() {
     const saved = localStorage.getItem('zamzam_products');
     return saved ? JSON.parse(saved) : defaultProducts;
 }
 
-// نمایش در صفحه اصلی
+function getInfo() {
+    const saved = localStorage.getItem('zamzam_info');
+    return saved ? JSON.parse(saved) : defaultInfo;
+}
+
+// بارگذاری اطلاعات تماس در صفحه اصلی
+function loadHomeData() {
+    const info = getInfo();
+    if(document.getElementById('display-address')) {
+        document.getElementById('display-address').innerText = info.address;
+        document.getElementById('display-phone').innerText = info.phone;
+        document.getElementById('display-hours').innerText = info.hours;
+    }
+    renderHomeProducts();
+}
+
+// نمایش محصولات در صفحه اصلی
 function renderHomeProducts() {
     const grid = document.getElementById('product-grid');
     if (!grid) return;
@@ -36,12 +58,34 @@ function renderHomeProducts() {
     `).join('');
 }
 
-// افزودن محصول جدید در پنل مدیریت
+// بارگذاری اطلاعات تماس در فرم مدیریت
+function loadAdminInfo() {
+    const info = getInfo();
+    document.getElementById('info-address').value = info.address;
+    document.getElementById('info-phone').value = info.phone;
+    document.getElementById('info-hours').value = info.hours;
+}
+
+// ذخیره تغییرات آدرس و تماس توسط ادمین
+const contactForm = document.getElementById('contact-info-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const updatedInfo = {
+            address: document.getElementById('info-address').value,
+            phone: document.getElementById('info-phone').value,
+            hours: document.getElementById('info-hours').value
+        };
+        localStorage.setItem('zamzam_info', JSON.stringify(updatedInfo));
+        alert('اطلاعات تماس با موفقیت به‌روزرسانی شد!');
+    });
+}
+
+// افزودن محصول جدید
 const addForm = document.getElementById('add-product-form');
 if (addForm) {
     addForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
         const fileInput = document.getElementById('p-image');
         const file = fileInput.files[0];
         
@@ -53,7 +97,7 @@ if (addForm) {
                     title: document.getElementById('p-title').value,
                     price: document.getElementById('p-price').value,
                     desc: document.getElementById('p-desc').value,
-                    image: event.target.result // تبدیل عکس به Data URL جهت ذخیره‌سازی
+                    image: event.target.result
                 };
                 
                 const products = getProducts();
@@ -69,7 +113,7 @@ if (addForm) {
     });
 }
 
-// نمایش لیست در ادمین
+// نمایش لیست محصولات در ادمین
 function renderAdminProducts() {
     const list = document.getElementById('admin-product-list');
     if (!list) return;
@@ -98,4 +142,4 @@ function deleteProduct(id) {
 }
 
 // اجرا هنگام بارگذاری
-document.addEventListener('DOMContentLoaded', renderHomeProducts);
+document.addEventListener('DOMContentLoaded', loadHomeData);
