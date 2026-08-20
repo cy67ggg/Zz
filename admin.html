@@ -18,11 +18,33 @@
         <p id="error-msg" class="text-red-500 text-xs text-center mt-3 hidden">رمز عبور اشتباه است!</p>
     </div>
 
-    <!-- پنل اصلی (در ابتدا مخفی) -->
+    <!-- پنل اصلی -->
     <div id="admin-panel" class="max-w-4xl mx-auto hidden">
         <div class="flex justify-between items-center mb-8">
-            <h2 class="text-2xl font-bold text-slate-900">مدیریت محصولات زمزم حیات</h2>
+            <h2 class="text-2xl font-bold text-slate-900">مدیریت زمزم حیات</h2>
             <a href="index.html" class="text-sm bg-white border border-slate-200 px-4 py-2 rounded-xl">مشاهده سایت</a>
+        </div>
+
+        <!-- مدیریت اطلاعات تماس -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm mb-8">
+            <h3 class="font-bold text-lg mb-4 text-slate-700">ویرایش اطلاعات آدرس و تماس</h3>
+            <form id="contact-info-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-slate-500 mb-1">آدرس فروشگاه:</label>
+                    <input type="text" id="info-address" required class="w-full border p-3 rounded-xl text-sm outline-none focus:border-blue-500">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs text-slate-500 mb-1">شماره تماس:</label>
+                        <input type="text" id="info-phone" required class="w-full border p-3 rounded-xl text-sm outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-500 mb-1">ساعات کاری:</label>
+                        <input type="text" id="info-hours" required class="w-full border p-3 rounded-xl text-sm outline-none focus:border-blue-500">
+                    </div>
+                </div>
+                <button type="submit" class="bg-emerald-600 text-white px-6 py-2.5 rounded-xl font-medium text-sm hover:bg-emerald-700 transition">ذخیره اطلاعات تماس</button>
+            </form>
         </div>
 
         <!-- فرم افزودن محصول -->
@@ -31,16 +53,16 @@
             <form id="add-product-form" class="space-y-4">
                 <input type="text" id="p-title" placeholder="نام دستگاه" required class="w-full border p-3 rounded-xl text-sm outline-none focus:border-blue-500">
                 <input type="text" id="p-price" placeholder="قیمت (مثلا: ۱۵,۵۰۰,۰۰۰ تومان)" required class="w-full border p-3 rounded-xl text-sm outline-none focus:border-blue-500">
-                <textarea id="p-desc" placeholder="توضیحات کوتاه (تعداد فیلتر، کشور سازنده و...)" class="w-full border p-3 rounded-xl text-sm outline-none focus:border-blue-500"></textarea>
+                <textarea id="p-desc" placeholder="توضیحات کوتاه" class="w-full border p-3 rounded-xl text-sm outline-none focus:border-blue-500"></textarea>
                 <div>
-                    <label class="block text-xs text-slate-500 mb-1">انتخاب تصویر از گالری:</label>
+                    <label class="block text-xs text-slate-500 mb-1">تصویر محصول:</label>
                     <input type="file" id="p-image" accept="image/*" required class="w-full text-sm border p-2 rounded-xl">
                 </div>
                 <button type="submit" class="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-medium text-sm hover:bg-blue-700 transition">ثبت محصول</button>
             </form>
         </div>
 
-        <!-- لیست محصولات جهت حذف -->
+        <!-- لیست محصولات -->
         <div class="bg-white p-6 rounded-2xl shadow-sm">
             <h3 class="font-bold text-lg mb-4 text-slate-700">محصولات موجود</h3>
             <div id="admin-product-list" class="space-y-4"></div>
@@ -55,6 +77,7 @@
                 document.getElementById('login-box').classList.add('hidden');
                 document.getElementById('admin-panel').classList.remove('hidden');
                 renderAdminProducts();
+                loadAdminInfo();
             } else {
                 document.getElementById('error-msg').classList.remove('hidden');
             }
